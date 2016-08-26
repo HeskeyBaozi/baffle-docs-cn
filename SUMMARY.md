@@ -1,5 +1,5 @@
-# Summary
+# 目录
 
 * [简介](README.md)
-* [获取baffle.js](README.md)
+* [正文](doc/README.md)
 
