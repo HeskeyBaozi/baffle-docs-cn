@@ -1,8 +1,9 @@
-# baffle.js
+# baffle.js 中文ReadMe
 
 一个用于DOM元素**文本乱码模糊再恢复**的极简JavaScript库
 
 > 官方主页: [camwiegert.github.io/baffle](https://camwiegert.github.io/baffle)
+> 中文文档: [doc-cn](Doc.md)
 
 > <img src="https://camwiegert.github.io/baffle/assets/images/baffle.js.png" width="500" alt="baffle.js">
 
@@ -137,7 +138,7 @@ b.set({
 > 在持续时间 `duration` (ms)内(默认为0) 使得文本模糊褪去, 恢复正常文字. 可以通过传入的 `delay` (ms)规定延迟调用时间.
 
 > ###`baffle.set([options])`
-> 通过传入 options 对象来更新覆盖实例中的选项设置. 传入对象的属性数量任意, 而且你也可以在baffle运行时设置
+> 通过传入 options 对象来更新覆盖实例中的选项设置. 传入对象的属性数量任意, 而且你也可以在`baffle`运行时设置
 
 > ###`baffle.text(fn)`
 > 通过使用函数 `fn` 来更新你`baffle`实例中的每一个元素节点的文本. 该函数接受当前元素节点的文本作为唯一参数. 函数 `fn` 的返回值将作为新的文本来替换掉旧文本.
