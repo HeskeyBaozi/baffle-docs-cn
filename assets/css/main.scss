@@ -1,0 +1,180 @@
+@import "monokai-sublime";
+@import "normalize";
+@import "octicons";
+@import "fonts";
+
+$fontFamily-mono: "ipm", "Menlo", "Courier New", "Microsoft YaHei", monospace;
+
+$color-black: #252525;
+$color-white: #ffffff;
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: $color-white;
+    color: $color-black;
+    font-family: $fontFamily-mono;
+    font-size: 1.5em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.45;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+p {
+    max-width: 40em;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+.docList-item {
+    margin-bottom: 3em;
+}
+
+.docList-header {
+    font-size: 1.5rem;
+    margin-bottom: 0.5em;
+}
+
+.docList-info {
+    padding-left: 2em;
+}
+
+.codeBlock {
+    background-color: $color-black;
+    color: $color-white;
+    padding: 4rem 10rem;
+    margin: 4rem 0;
+    code {
+        background-color: transparent;
+        color: inherit;
+    }
+}
+
+code {
+    font-family: $fontFamily-mono;
+    line-height: 1.85;
+    background-color: #e7d9ff;
+    color: #310680;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.hljs {
+    background-color: transparent;
+}
+
+.header {
+    padding: 10rem 10rem 0;
+}
+
+.header-headline {
+    font-size: 3.6rem;
+    font-weight: 400;
+    margin: 0 0 1em 0;
+}
+
+.header-lead {
+    font-size: 1em;
+    font-weight: 400;
+    margin-bottom: 2em;
+    max-width: 30em;
+}
+
+.header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    .btn {
+        margin-bottom: 1em;
+        margin-right: 1em;
+    }
+}
+
+.btn {
+    border-color: $color-black;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 0.75em 1.5em;
+    text-decoration: none;
+    -webkit-transition: color 50ms ease-in-out, background-color 50ms ease-in-out;
+            transition: color 50ms ease-in-out, background-color 50ms ease-in-out;
+    &:hover {
+        background-color: $color-black;
+        color: $color-white;
+    }
+    &:active {
+        -webkit-transform: scale(0.98);
+                transform: scale(0.98);
+    }
+}
+
+.wrap {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+section {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
+.sectionHeader {
+    font-size: 2rem;
+    margin-bottom: 1.5em;
+    a {
+        text-decoration: none;
+    }
+    a:hover:after {
+        content: "#";
+        padding-left: 0.35em;
+        opacity: 0.35;
+    }
+}
+
+#support ul {
+    margin-bottom: 2em;
+}
+
+#basics .dom-warning {
+    opacity: 0.75;
+    margin-top: 2em;
+    .octicon {
+        font-size: 1em;
+    }
+}
+
+.demo-text {
+    margin-bottom: 2em;
+    padding: 1.5em;
+    background-color: #f5f5f5;
+    color: #555555;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+
+.demo-buttons .btn {
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+.demo-buttons .btn code {
+    color: inherit;
+    background-color: transparent;
+}

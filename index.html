@@ -1,307 +1,238 @@
-
-<!DOCTYPE HTML>
-<html lang="" >
+<!DOCTYPE html>
+<html>
     <head>
-        <title>官方ReadMe · GitBook</title>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
-        
-        
-        
-    
-    <link rel="stylesheet" href="gitbook/style.css">
-
-    
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
-
-    
-
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="Doc.html" />
-    
-    
-
+        <meta charset="utf-8">
+        <title>baffle.js</title>
+        <meta name="description" content="Baffle.js is a tiny (~1.8kb) javascript library for obfuscating and revealing text in DOM elements.">
+        <link rel="stylesheet" href="./assets/css/main.min.css">
+        <meta property="og:url" content="https://camwiegert.github.io/baffle">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="baffle.js">
+        <meta property="og:description" content="a tiny (~1.8kb) javascript library for obfuscating and revealing text in DOM elements.">
+        <meta property="og:image" content="https://camwiegert.github.io/baffle/assets/images/baffle.js.png">
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
 
-            
-                <nav role="navigation">
-                
+        <header class="header">
+            <h1 class="header-headline">baffle.js</h1>
+            <h2 class="header-lead">一个极简的(~1.8kb)用于DOM元素文本乱码模糊再恢复JavaScript库</h2>
+            <div class="header-actions">
+                <a class="btn" href="https://github.com/camwiegert/baffle"><i class="octicon octicon-octoface"></i> 源代码</a>
+                <a class="btn" href="https://raw.githubusercontent.com/camwiegert/baffle/master/dist/baffle.min.js"><i class="octicon octicon-cloud-download"></i> 下载</a>
+                <a class="btn" href="#demo"><i class="octicon octicon-plug"></i> 示例</a>
+                <a class="btn" href="https://npmjs.com/package/baffle"><i class="octicon octicon-package"></i> npm仓库</a>
+            </div>
+        </header>
 
+<pre class="codeBlock"><code class="javascript">// 在任意元素上进行乱码模糊.
+let b = baffle('.someSelector').start();
+// 同样也适用于其他某些异步方法.
+someAsyncFunction(result => {
+    // 用异步获得的文本替换当前文本, 并在1500ms内恢复正常文字.
+    b.text(currentText => result.text).reveal(1500);
+});
+</code></pre>
 
-<ul class="summary">
-    
-    
+        <section id="install">
+            <div class="wrap">
+                <h3 class="sectionHeader"><a href="#install">获取baffle.js</a></h3>
+                <p>你可以<a href="https://raw.githubusercontent.com/camwiegert/baffle/master/dist/baffle.min.js">下载最新发布的版本</a>并且在包含引入到你的网页中(<code>window.baffle</code>), 或者直接通过<a href="https://npmjs.com/package/baffle">NPM</a>安装.</p>
+            </div>
+            <pre class="codeBlock nohighlight"><code>$ npm install --save baffle</code></pre>
+        </section>
 
-    
+        <section id="basics">
+            <div class="wrap">
+                <h3 class="sectionHeader"><a href="#basics">基本用法</a></h3>
+                <p>在baffle安装好后, 只需简单的调用 <code>baffle()</code> 并传入参数来实例化一个 <code>baffle</code> 对象. 参数可以是是以CSS选择器, 单一节点或者节点列表(NodeList). 你也可以额外传入一个 <code>options</code> 对象.</p>
+                <p class="dom-warning"><small><i class="octicon octicon-alert"></i> baffle的效果是作用于 <code>node.textContent</code> 上的, 所以这个效果也会影响到其子元素. 最好的办法就是在没有子结点的元素上使用baffle.</small></p>
+            </div>
+<pre class="codeBlock"><code class="javascript">// b 是一个 baffle 实例
+// 使用CSS选择器
+let b = baffle('.headline');
 
-    
-        
-        
-    
-        <li class="chapter active" data-level="1.1" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    官方ReadMe
-            
-                </a>
-            
+// 使用单一节点
+let b = baffle(document.querySelector('.headline'));
 
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2" data-path="Doc.html">
-            
-                <a href="Doc.html">
-            
-                    
-                    详细文档
-            
-                </a>
-            
+// 使用节点列表
+let b = baffle(document.querySelectorAll('a'));
 
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >官方ReadMe</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h1 id="bafflejs-&#x4E2D;&#x6587;readme">baffle.js &#x4E2D;&#x6587;ReadMe</h1><p>&#x4E00;&#x4E2A;&#x7528;&#x4E8E;DOM&#x5143;&#x7D20;<strong>&#x6587;&#x672C;&#x4E71;&#x7801;&#x6A21;&#x7CCA;&#x518D;&#x6062;&#x590D;</strong>&#x7684;&#x6781;&#x7B80;JavaScript&#x5E93;</p><blockquote><p>&#x5B98;&#x65B9;&#x4E3B;&#x9875;: <a href="https://camwiegert.github.io/baffle" target="_blank">camwiegert.github.io/baffle</a>
-&#x4E2D;&#x6587;&#x6587;&#x6863;: <a href="Doc.html">doc-cn</a></p><p><img src="https://camwiegert.github.io/baffle/assets/images/baffle.js.png" width="500" alt="baffle.js"></p></blockquote><ul><li>&#x538B;&#x7F29;&#x7EA6; ~1.8kb!  (&#xFF61;&#x30FB;`&#x3C9;&#xB4;&#xFF65;)
-</li>
-<li>&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x4F9D;&#x8D56;!  (&#xFF89;&#xFF65;&#x3C9;&#xFF65;)&#xFF89;&#xFF9E;
-</li>
-<li>&#x652F;&#x6301;IE9+!  &#x30FD;(&#x2022;&#x300;&#x3C9;&#x2022;&#x301; )&#x309D;
-</li></ul>
-<pre><code class="lang-javascript"><span class="hljs-comment">// &#x4F7F;&#x7528;&#x9009;&#x62E9;&#x5668;&#x9009;&#x62E9;&#x5143;&#x7D20;&#x5E76;&#x5F00;&#x59CB;&#x4E71;&#x7801;&#x6A21;&#x7CCA;.</span>
-<span class="hljs-keyword">let</span> b = baffle(<span class="hljs-string">&apos;.someSelector&apos;</span>).start();
-
-<span class="hljs-comment">// &#x540C;&#x6837;&#x4E5F;&#x9002;&#x7528;&#x4E8E;&#x5176;&#x4ED6;&#x67D0;&#x4E9B;&#x5F02;&#x6B65;&#x65B9;&#x6CD5;.</span>
-someAsyncFunction(result =&gt; {
-    <span class="hljs-comment">// &#x7528;&#x5F02;&#x6B65;&#x83B7;&#x5F97;&#x7684;&#x6587;&#x672C;&#x66FF;&#x6362;&#x5F53;&#x524D;&#x6587;&#x672C;, &#x5E76;&#x5728;1500ms&#x5185;&#x6062;&#x590D;&#x6B63;&#x5E38;&#x6587;&#x5B57;.</span>
-    b.text(text =&gt; result.text).reveal(<span class="hljs-number">1500</span>);
-});</code></pre>
-<hr><h2 id="&#x8D77;&#x6B65;">&#x8D77;&#x6B65;</h2><h4 id="&#x6B65;&#x9AA4;-0-&#x5B89;&#x88C5;">&#x6B65;&#x9AA4; 0: &#x5B89;&#x88C5;</h4><p><a href="https://raw.githubusercontent.com/camwiegert/baffle/master/dist/baffle.min.js" target="_blank">&#x76F4;&#x63A5;&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7684;&#x53D1;&#x5E03;&#x7684;&#x7248;&#x672C;</a> &#x6216;&#x8005;&#x4F7F;&#x7528;<code>npm</code>&#x5305;&#x7BA1;&#x7406;&#x5668;&#x5B89;&#x88C5;.</p><pre><code class="lang-sh">npm install --save baffle</code></pre>
-<h4 id="&#x6B65;&#x9AA4;-1-&#x5F15;&#x5165;">&#x6B65;&#x9AA4; 1: &#x5F15;&#x5165;</h4><p>&#x5982;&#x679C;&#x4F60;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>HTML</code>&#x6807;&#x7B7E;&#x76F4;&#x63A5;&#x5F15;&#x5165;&#x4EE3;&#x7801;, &#x90A3;&#x4E48;&#x4F60;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>window.baffle</code> &#x6765;&#x4F7F;&#x7528;&#x672C;&#x5E93;. &#x5728;&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x4E2D;, &#x4F60;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6A21;&#x5757;&#x5BFC;&#x5165;&#x672C;&#x5E93;.</p><pre><code class="lang-javascript"><span class="hljs-comment">// CommonJS &#x65B9;&#x5F0F;</span>
-<span class="hljs-keyword">let</span> baffle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;baffle&apos;</span>);
-
-<span class="hljs-comment">// ES6 &#x5BFC;&#x5165;&#x65B9;&#x5F0F;</span>
-<span class="hljs-keyword">import</span> baffle <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;baffle&apos;</span>;</code></pre>
-<h4 id="&#x6B65;&#x9AA4;-2-&#x521D;&#x59CB;&#x5316;&#x5B9E;&#x4F8B;&#x5316;">&#x6B65;&#x9AA4; 2: &#x521D;&#x59CB;&#x5316;/&#x5B9E;&#x4F8B;&#x5316;</h4><p>&#x4F60;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E00;&#x4E9B;&#x5143;&#x7D20;&#x8282;&#x70B9;&#x6765;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;baffle&#x5B9E;&#x4F8B;. &#x4F60;&#x53EF;&#x4EE5;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x5217;&#x8868;(<code>NodeList</code>), &#x4E00;&#x4E2A;&#x8282;&#x70B9;(<code>Node</code>) &#x6216;&#x8005; &#x662F;&#x4E00;&#x4E2A;&#x9009;&#x62E9;&#x5668;.</p><pre><code class="lang-javascript"><span class="hljs-comment">// &#x4F20;&#x5165;&#x9009;&#x62E9;&#x5668;.</span>
-<span class="hljs-keyword">let</span> b = baffle(<span class="hljs-string">&apos;.baffle&apos;</span>);
-
-<span class="hljs-comment">// &#x4F20;&#x5165;&#x8282;&#x70B9;&#x5217;&#x8868;(NodeList)</span>
-<span class="hljs-keyword">let</span> b = baffle(<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&apos;.baffle&apos;</span>));
-
-<span class="hljs-comment">// &#x4F20;&#x5165;&#x5355;&#x4E2A;&#x8282;&#x70B9;(Node)</span>
-<span class="hljs-keyword">let</span> b = baffle(<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&apos;.baffle&apos;</span>));</code></pre>
-<h4 id="&#x6B65;&#x9AA4;-3-&#x5C3D;&#x60C5;&#x4F7F;&#x7528;">&#x6B65;&#x9AA4; 3: &#x5C3D;&#x60C5;&#x4F7F;&#x7528;</h4><p>&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;<code>baffle</code>&#x5B9E;&#x4F8B;, &#x6709;&#x591A;&#x79CD;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x8C03;&#x7528;. &#x901A;&#x5E38;, &#x6211;&#x4EEC;&#x4F1A;&#x8C03;&#x7528; <code>b.start()</code> &#x5F00;&#x59CB;&#x8FDB;&#x884C;&#x4E71;&#x7801;&#x6A21;&#x7CCA;, &#x7136;&#x540E;&#x8C03;&#x7528; <code>b.reveal()</code> &#x6765;&#x6062;&#x590D;.</p><pre><code class="lang-javascript"><span class="hljs-comment">// &#x5F00;&#x59CB;&#x8FDB;&#x884C;&#x4E71;&#x7801;&#x6A21;&#x7CCA;...</span>
+// 传入options对象
+let b = baffle('.headline', {
+    characters: 'abcdefghijklmnopqrstuvwxyz',
+    speed: 75
+});
+</code></pre>
+            <div class="wrap">
+                <p>实例化baffle之后, 你可以通过使用 <code>start()</code> 方法来开始进行乱码模糊, 通过使用 <code>stop()</code> 方法来暂停, 或者通过 <code>reveal()</code> 方法来恢复到正常文本.</p>
+            </div>
+<pre class="codeBlock"><code class="javascript">// 开始进行乱码模糊
 b.start();
 
-<span class="hljs-comment">// &#x6216;&#x8005;&#x6682;&#x505C;&#x4E71;&#x7801;&#x6A21;&#x7CCA;...</span>
+// 暂停乱码模糊
 b.stop();
 
-<span class="hljs-comment">// &#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x4E71;&#x7801;&#x6E32;&#x67D3;...</span>
-b.once();
+// 立刻恢复正常文本
+b.reveal();
 
-<span class="hljs-comment">// &#x5728;&#x521D;&#x59CB;&#x5316;&#x4E4B;&#x540E;, &#x4F60;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E00;&#x4E9B;&#x9009;&#x9879;...</span>
-b.set({...options});
+// 在1000ms内恢复正常文本
+b.reveal(1000);
+</code></pre>
+            <div class="wrap">
+                <p>同样地, 你可以在任何时间内调用 <code>text()</code> 来改变包含于 <code>baffle</code> 实例中的文本, 或者调用 <code>set()</code> 来改变 <code>options</code> 对象.</p>
+            </div>
+<pre class="codeBlock"><code class="javascript">/**
+* text() 方法接收一个函数, 这个函数的唯一参数是
+* 目前baffle实例中的文本, 并返回一个新的文本.
+*/
+b.text(currentText => currentText + '!');
 
-<span class="hljs-comment">// &#x6216;&#x8005;&#x5728;&#x4EFB;&#x4F55;&#x65F6;&#x5019;&#x6539;&#x53D8;&#x6587;&#x672C;...</span>
-b.text(text =&gt; <span class="hljs-string">&apos;Hi Mom!&apos;</span>);
-
-<span class="hljs-comment">// &#x6700;&#x7EC8;, &#x4F60;&#x4F1A;&#x4F7F;&#x6587;&#x672C;&#x6062;&#x590D;&#x5230;&#x6B63;&#x5E38;...</span>
-b.reveal(<span class="hljs-number">1000</span>);
-
-<span class="hljs-comment">// &#x9664;&#x6B64;&#x4E4B;&#x5916;, &#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x90FD;&#x53EF;&#x4EE5;&#x94FE;&#x5F0F;&#x8C03;&#x7528;...</span>
-b.start()
-    .set({ speed: <span class="hljs-number">100</span> })
-    .text(text =&gt; <span class="hljs-string">&apos;Hi dad!&apos;</span>)
-    .reveal(<span class="hljs-number">1000</span>);</code></pre>
-<h2 id="&#x9009;&#x9879;-options">&#x9009;&#x9879; (options)</h2><p>&#x5728;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;, &#x4F60;&#x53EF;&#x4EE5;&#x4F20;&#x5165;<code>options</code>&#x5BF9;&#x8C61;&#x6765;&#x914D;&#x7F6E;&#x4E00;&#x4E9B;&#x8BBE;&#x7F6E;. &#x540C;&#x6837;, &#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x8C03;&#x7528; <code>baffle.set()</code>&#x6765;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;.</p><pre><code class="lang-javascript"><span class="hljs-comment">// &#x521D;&#x59CB;&#x5316;&#x65F6;...</span>
-baffle(<span class="hljs-string">&apos;.baffle&apos;</span>, {
-    characters: <span class="hljs-string">&apos;+#-&#x2022;=~*&apos;</span>,
-    speed: <span class="hljs-number">75</span>
+// set() 方法接收一个 options 对象.
+b.set({
+    speed: 100,
+    characters: '+-•~!=*'
 });
 
-<span class="hljs-comment">// &#x4EFB;&#x4F55;&#x65F6;&#x673A;&#x8C03;&#x7528;set()</span>
+// 只需在 options 对象中写入你想覆盖的属性
 b.set({
-    characters: <span class="hljs-string">&apos;&#xAF;\_(&#x30C4;)_/&#xAF;&apos;</span>,
-    speed: <span class="hljs-number">25</span>
-});</code></pre>
-<blockquote><h3 id="optionscharacters"><code>options.characters</code></h3><p>&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x6307;&#x7684;&#x662F;<code>baffle</code>&#x5728;&#x7528;&#x6765;&#x8FDB;&#x884C;&#x4E71;&#x7801;&#x6A21;&#x7CCA;&#x4F7F;&#x7528;&#x7684; &quot;&#x4E71;&#x7801;&quot; &#x5B57;&#x7B26;. &#x5B83;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;(<code>string</code>)&#x6216;&#x8005;&#x662F; &#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x5355;&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x6570;&#x7EC4;(<code>an array of characters</code>).</p><p><strong>&#x9ED8;&#x8BA4;&#x503C;:</strong> <code>&apos;AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz~!@#$%^&amp;*()-+=[]{}|;:,./&lt;&gt;?&apos;</code></p><h3 id="optionsexclude"><code>options.exclude</code></h3><p>&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x6307;&#x7684;&#x662F;<code>baffle</code>&#x8FDB;&#x884C;&#x4E71;&#x7801;&#x6A21;&#x7CCA;&#x65F6;, &#x4F1A;&#x5FFD;&#x7565;&#x8BE5;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x7684;&#x7279;&#x5B9A;&#x5B57;&#x7B26;. &#x5B83;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x5355;&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x6570;&#x7EC4;(<code>an array of characters</code>).</p><p><strong>&#x9ED8;&#x8BA4;&#x503C;:</strong> <code>[&apos; &apos;]</code></p><h3 id="optionsspeed"><code>options.speed</code></h3><p>&#x8868;&#x793A;<code>baffle</code>&#x4E71;&#x7801;&#x6A21;&#x7CCA;&#x5316;&#x65F6;&#x7684;&#x66F4;&#x65B0;&#x9891;&#x7387;..</p><p><strong>Default:</strong> <code>50</code></p></blockquote><h2 id="&#x65B9;&#x6CD5;methods">&#x65B9;&#x6CD5;(methods)</h2><p><code>baffle</code>&#x5B9E;&#x4F8B;&#x62E5;&#x6709;6&#x4E2A;&#x53EF;&#x4EE5;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x6CD5;..</p><blockquote><h3 id="baffleonce"><code>baffle.once()</code></h3><p>&#x901A;&#x8FC7;&#x4F7F;&#x7528; <code>options.characters</code> &#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x4E71;&#x7801;&#x5904;&#x7406;.</p><h3 id="bafflestart"><code>baffle.start()</code></h3><p>&#x5728;&#x88AB;<code>baffle</code>&#x5B9E;&#x4F8B;&#x5305;&#x88F9;&#x7684;&#x5143;&#x7D20;&#x8282;&#x70B9;&#x4E0A;&#x8FDB;&#x884C;&#x4E71;&#x7801;&#x6A21;&#x7CCA;, &#x66F4;&#x65B0;&#x901F;&#x5EA6;&#x7531; <code>options.speed</code> (ms)&#x6765;&#x786E;&#x5B9A;.</p><h3 id="bafflestop"><code>baffle.stop()</code></h3><p>&#x6682;&#x505C;&#x4E71;&#x7801;&#x6548;&#x679C;. &#x6CE8;&#x610F;, &#x8FD9;&#x6837;&#x5E76;&#x4E0D;&#x4F1A;&#x4F7F;&#x4F60;&#x7684;&#x5143;&#x7D20;&#x7684;&#x6587;&#x5B57;&#x6062;&#x590D;&#x6B63;&#x5E38;, &#x53EA;&#x662F;&#x6682;&#x505C;&#x6A21;&#x7CCA;&#x53D8;&#x6362;&#x800C;&#x5DF2;. &#x8981;&#x60F3;&#x6587;&#x5B57;&#x6062;&#x590D;, &#x8BF7;&#x4F7F;&#x7528; <code>reveal()</code> &#x65B9;&#x6CD5;.</p><h3 id="bafflerevealduration-delay"><code>baffle.reveal([duration], [delay])</code></h3><p>&#x5728;&#x6301;&#x7EED;&#x65F6;&#x95F4; <code>duration</code> (ms)&#x5185;(&#x9ED8;&#x8BA4;&#x4E3A;0) &#x4F7F;&#x5F97;&#x6587;&#x672C;&#x6A21;&#x7CCA;&#x892A;&#x53BB;, &#x6062;&#x590D;&#x6B63;&#x5E38;&#x6587;&#x5B57;. &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F20;&#x5165;&#x7684; <code>delay</code> (ms)&#x89C4;&#x5B9A;&#x5EF6;&#x8FDF;&#x8C03;&#x7528;&#x65F6;&#x95F4;.</p><h3 id="bafflesetoptions"><code>baffle.set([options])</code></h3><p>&#x901A;&#x8FC7;&#x4F20;&#x5165; options &#x5BF9;&#x8C61;&#x6765;&#x66F4;&#x65B0;&#x8986;&#x76D6;&#x5B9E;&#x4F8B;&#x4E2D;&#x7684;&#x9009;&#x9879;&#x8BBE;&#x7F6E;. &#x4F20;&#x5165;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x6570;&#x91CF;&#x4EFB;&#x610F;, &#x800C;&#x4E14;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;<code>baffle</code>&#x8FD0;&#x884C;&#x65F6;&#x8BBE;&#x7F6E;</p><h3 id="baffletextfn"><code>baffle.text(fn)</code></h3><p>&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x51FD;&#x6570; <code>fn</code> &#x6765;&#x66F4;&#x65B0;&#x4F60;<code>baffle</code>&#x5B9E;&#x4F8B;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x8282;&#x70B9;&#x7684;&#x6587;&#x672C;. &#x8BE5;&#x51FD;&#x6570;&#x63A5;&#x53D7;&#x5F53;&#x524D;&#x5143;&#x7D20;&#x8282;&#x70B9;&#x7684;&#x6587;&#x672C;&#x4F5C;&#x4E3A;&#x552F;&#x4E00;&#x53C2;&#x6570;. &#x51FD;&#x6570; <code>fn</code> &#x7684;&#x8FD4;&#x56DE;&#x503C;&#x5C06;&#x4F5C;&#x4E3A;&#x65B0;&#x7684;&#x6587;&#x672C;&#x6765;&#x66FF;&#x6362;&#x6389;&#x65E7;&#x6587;&#x672C;.</p></blockquote><hr><ul><li><strong>&#x8BB8;&#x53EF;&#x534F;&#x8BAE;:</strong> MIT
-</li>
-<li><strong>&#x4F5C;&#x8005;:</strong> <a href="http://camwiegert.com" target="_blank">Cam Wiegert</a>
-</li>
-<li><strong>&#x7075;&#x611F;&#x6765;&#x6E90;:</strong> <a href="http://oak.is/" target="_blank">Oak</a>
-</li>
-<li><strong>Language:</strong> <a href="https://github.com/camwiegert/baffle" target="_blank">English</a>
-</li></ul>
+    speed: 40
+});
+</code></pre>
+        </section>
 
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
-
+        <section id="methods">
+            <div class="wrap">
+                <h3 class="sectionHeader"><a href="#methods">方法 (Methods)</a></h3>
+                <p>baffle实例拥有6个可以链式调用的方法.</p>
+                <ul class="docList">
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>baffle.once()</code></h5>
+                        <div class="docList-info">
+                            <p>通过使用 <code>options.characters</code> 属性进行一次乱码处理.</p>
                         </div>
-                    </div>
-                
+                    </li>
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>baffle.start()</code></h5>
+                        <div class="docList-info">
+                            <p>在被baffle实例包裹的元素节点上进行乱码模糊, 更新速度由 <code>options.speed</code> (ms)来确定.</p>
+                        </div>
+                    </li>
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>baffle.stop()</code></h5>
+                        <div class="docList-info">
+                            <p>暂停乱码效果. 注意, 这样并不会使你的元素的文字恢复正常, 只是暂停模糊变换而已. 要想文字恢复, 请使用 <code>reveal()</code> 方法.</p>
+                        </div>
+                    </li>
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>baffle.reveal([duration], [delay])</code></h5>
+                        <div class="docList-info">
+                            <p>在持续时间 <code>duration</code> (ms)内(默认值为0)使得文本模糊褪去, 恢复正常文字. 通过配置 <code>delay</code> (ms)参数规定延迟调用时间.</p>
+                        </div>
+                    </li>
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>baffle.set([options])</code></h5>
+                        <div class="docList-info">
+                            <p>通过传入 <code>options</code> 对象来更新覆盖实例中的选项设置. 传入对象的属性数量任意, 而且你也可以在baffle运行时设置.</p>
+                        </div>
+                    </li>
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>baffle.text(fn)</code></h5>
+                        <div class="docList-info">
+                            <p>通过使用函数 <code>fn</code> 来更新你baffle实例中的每一个元素节点的文本. 该函数接受当前元素节点的文本作为唯一参数. 函数 <code>fn</code> 的返回值将作为新的文本来替换掉旧文本.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
+        </section>
 
-            
-                
-                
-                <a href="Doc.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 详细文档">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+        <section id="options">
+            <div class="wrap">
+                <h3 class="sectionHeader"><a href="#options">选项 (options)</a></h3>
+                <p>你可以在baffle实例化或者使用 <code>set()</code> 方法设置baffle实例的时候传入一个 options 对象.</p>
+            </div>
+<pre class="codeBlock"><code class="javascript">// 进行实例化
+baffle('.someSelector', {
+    characters: 'supercalifragilisticexpialidocious',
+    speed: 150
+});
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"官方ReadMe","level":"1.1","depth":1,"next":{"title":"详细文档","level":"1.2","depth":1,"path":"Doc.md","ref":"Doc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2016-08-26T16:11:25.862Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-08-26T16:18:31.819Z"},"basePath":".","book":{"language":""}});
-        });
-    </script>
-</div>
+// 实例化之后的任何时机
+baffle('.someSelector')
+    .start()
+    .set({
+        characters: 'supercalifragilisticexpialidocious',
+        speed: 150
+    });
+</code></pre>
+            <div class="wrap">
+                <h4>可用选项属性</h4>
+                <ul class="docList">
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>options.characters</code></h5>
+                        <div class="docList-info">
+                            <p>baffle在用来进行乱码模糊使用的 "乱码" 字符. 它可以是一个字符串或者是一个元素是单个字符的数组.</p>
+                            <p class="nowrap"><strong>默认值:</strong> <code>'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz~!@#$%^&amp;*()-+=[]{}|;:,./&lt;&gt;?'</code></p>
+                        </div>
+                    </li>
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>options.exclude</code></h5>
+                        <div class="docList-info">
+                            <p>baffle进行乱码模糊时, 会忽略该属性设置的特定字符. 它可以是一个元素是单个字符的数组.</p>
+                            <p class="nowrap"><strong>默认值:</strong> <code>[' ']</code></p>
+                        </div>
+                    </li>
+                    <li class="docList-item">
+                        <h5 class="docList-header"><code>options.speed</code></h5>
+                        <div class="docList-info">
+                            <p>这是用来表示baffle乱码模糊化时的更新频率.</p>
+                            <p class="nowrap"><strong>Default:</strong> <code>50</code></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-        
-    <script src="gitbook/gitbook.js"></script>
-    <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        <section id="demo">
+            <div class="wrap">
+                <h3 class="sectionHeader"><a href="#demo">示例</a></h3>
+                <div class="demo-text js-demo">The quick brown fox jumps over the lazy dog.</div>
+                <div class="demo-buttons">
+                    <a href="#" class="btn js-demo-once"><code>once()</code></a>
+                    <a href="#" class="btn js-demo-start"><code>start()</code></a>
+                    <a href="#" class="btn js-demo-stop"><code>stop()</code></a>
+                    <a href="#" class="btn js-demo-reveal"><code>reveal(1000)</code></a>
+                    <a href="#" class="btn js-demo-text"><code>text(text => reverse(text))</code></a>
+                </div>
+            </div>
+        </section>
 
+        <section id="support">
+            <div class="wrap">
+                <h3 class="sectionHeader"><a href="#support">浏览器兼容性</a></h3>
+                <ul>
+                    <li><i class="octicon octicon-check"></i> 所有现代浏览器</li>
+                    <li><i class="octicon octicon-check"></i> IE9+</li>
+                </ul>
+                <p>当你遇到任何问题时, 欢迎<a href="https://github.com/camwiegert/baffle/issues">提出问题到issues</a></p>
+            </div>
+        </section>
+
+        <section class="wrap">
+                <div><strong>许可协议: </strong> MIT</div>
+                <div><strong>作者: </strong> <a href="http://camwiegert.com">Cam Wiegert</a></div>
+                <div><strong>灵感来源: </strong> <a href="http://oak.is/">Oak</a></div>
+                <div><strong>Language: </strong> <a href="https://camwiegert.github.io/baffle/">English</a></div>
+        </section>
+
+        <script src="./dist/baffle.min.js"></script>
+        <script src="./assets/js/main.bundle.js"></script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-58507732-4', 'auto');
+          ga('send', 'pageview');
+        </script>
     </body>
 </html>
-
