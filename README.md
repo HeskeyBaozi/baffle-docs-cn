@@ -4,7 +4,7 @@
 
 - 官方主页: [baffle.js](https://camwiegert.github.io/baffle)
 - 官方Github: [Source](https://github.com/camwiegert/baffle)
-- 中文文档: [Doc-CN](Doc.md)
+- 中文文档: [Doc-CN](https://heskeybaozi.gitbooks.io/baffle-docs-cn/content/)
 - 中文主页: [baffls.js](https://heskeybaozi.github.io/baffle-doc-cn)
 
 > <img src="https://camwiegert.github.io/baffle/assets/images/baffle.js.png" width="500" alt="baffle.js">
