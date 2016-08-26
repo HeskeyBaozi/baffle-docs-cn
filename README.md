@@ -2,8 +2,10 @@
 
 一个用于DOM元素**文本乱码模糊再恢复**的极简JavaScript库
 
-> 官方主页: [camwiegert.github.io/baffle](https://camwiegert.github.io/baffle)
-> 中文文档: [doc-cn](Doc.md)
+- 官方主页: [baffle.js](https://camwiegert.github.io/baffle)
+- 官方Github: [Source](https://github.com/camwiegert/baffle)
+- 中文文档: [Doc-CN](Doc.md)
+- 中文主页: [baffls.js](https://heskeybaozi.github.io/baffle-doc-cn)
 
 > <img src="https://camwiegert.github.io/baffle/assets/images/baffle.js.png" width="500" alt="baffle.js">
 
